@@ -13,7 +13,9 @@ here — it lives in the `sql/` files referenced below.
 
 ## 2. Sources (Configure → Sources)
 
-Link all six Gold tables directly — no Silver/Bronze:
+Six Gold tables plus two Bronze supplements (8 sources total). Gold is
+authoritative for all locked metrics; the Bronze tables cover attributes not
+(yet) promoted to Gold:
 
 - `retail_demo.gold.fact_orders` (1 row/order)
 - `retail_demo.gold.fact_order_items` (1 row/order item)
@@ -21,6 +23,12 @@ Link all six Gold tables directly — no Silver/Bronze:
 - `retail_demo.gold.dim_customer` (1 row/customer_id)
 - `retail_demo.gold.dim_product` (1 row/product)
 - `retail_demo.gold.dim_seller` (1 row/seller)
+- `retail_demo.bronze.customers_raw` (supplement — raw customer attributes absent from Gold)
+- `retail_demo.bronze.geolocation_raw` (supplement — geolocation was deliberately excluded from Gold)
+
+Rule: metric questions (revenue, orders, AOV, customers) must resolve against
+Gold per §3. Bronze supplements are for descriptive attributes only, never for
+measures.
 
 Key joins (many-to-one):
 
