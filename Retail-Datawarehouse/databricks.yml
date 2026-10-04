@@ -1,0 +1,10 @@
+bundle:
+  name: retail-datawarehouse
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
